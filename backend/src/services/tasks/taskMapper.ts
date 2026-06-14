@@ -10,10 +10,10 @@ export function enrichTask(task: Task): Task {
 
     return {
         ...task,
-        daysLeft: getDaysLeft(task.dueDate),
-        isOverdue: isOverdue(task.dueDate),
-        isDueToday: isDueToday(task.dueDate),
-        isDueSoon: isDueSoon(task.dueDate, 3),
+        daysLeft: task.dueDate ? getDaysLeft(task.dueDate) : null,
+        isOverdue: task.dueDate ? isOverdue(task.dueDate) : false,
+        isDueToday: task.dueDate ? isDueToday(task.dueDate) : false,
+        isDueSoon: task.dueDate ? isDueSoon(task.dueDate, 3) : false,
     };
 
 }

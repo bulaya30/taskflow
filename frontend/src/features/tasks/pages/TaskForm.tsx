@@ -57,7 +57,7 @@ export default function TaskForm({ onSubmit, task, isLoading }: TaskFormProps) {
       title: task.title,
       description: task.description,
       priority: task.priority,
-      dueDate: task.dueDate,
+      dueDate: task.dueDate ?? "",
     });
   }, [task, reset]);
 
@@ -66,7 +66,12 @@ export default function TaskForm({ onSubmit, task, isLoading }: TaskFormProps) {
 
   return (
     <form
-      onSubmit={handleSubmit(data => onSubmit(data))}
+      onSubmit={handleSubmit(data => {
+        onSubmit({
+          ...data,
+          dueDate: data.dueDate || null,
+        });
+      })}
       className="space-y-5"
       aria-label="Task form"
     >

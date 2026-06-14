@@ -33,6 +33,16 @@ export function firestoreToDate(
 
 export const converToArray = <T>(data : T) => !Array.isArray(data) ? [data] : data
 
+export const formattedDate = (dueDate: string | null) => {
+  
+  return dueDate ? new Date(dueDate).toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    })
+  : null;
+}
+
 export function getRemainingDays(dueDate: string): number {
   const today = new Date();
   const due = new Date(dueDate);

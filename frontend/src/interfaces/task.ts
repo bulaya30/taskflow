@@ -3,18 +3,21 @@ export type Priority = 'HIGH' | 'MEDIUM' | 'LOW'
 
 
 export interface Task {
-    id: string | number,
+    id: string,
     title: string,
     description?: string,
     completed: boolean,
-    dueDate : string,
+    dueDate? : string | null,
     priority: Priority, 
-    daysLeft?: number
+    daysLeft?: number | null,
+    isOverdue?: boolean,
+    isDueToday?: boolean,    
+    isDueSoon?: boolean,
 }
 
 export interface TaskInputs {
     title: string,
     description?: string,
-    dueDate: string,
+    dueDate?: string | null,
     priority: Priority
 }

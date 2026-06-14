@@ -13,7 +13,7 @@ export interface Task {
     active?: boolean,
     createdAt?: string | object,
     updatedAt?: string | object
-    daysLeft?: number,
+    daysLeft?: number | null,
     isOverdue?: boolean,
     isDueToday?: boolean,    
     isDueSoon?: boolean,

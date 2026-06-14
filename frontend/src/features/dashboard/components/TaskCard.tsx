@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import type { Task } from "@/interfaces/task"
 import { priorityStyles } from "@/features/constants/Task"
+import { formattedDate } from '@/lib/utils'
 
 import { Pencil, Trash2, Check, RotateCcw, Loader2 } from "lucide-react"
 
@@ -27,7 +28,7 @@ export default function TaskCard({
   isDeleting = false
 }: TaskProps) {
   const { title, dueDate, priority, description, completed, daysLeft } = task
-
+  
 
   return (
     <article aria-label={`Task: ${title}`}>
@@ -120,16 +121,33 @@ export default function TaskCard({
           )}
 
           <p className="text-sm text-white/50">
-            Due: <time dateTime={dueDate}>{dueDate}</time>
+            {dueDate ? (
+                          <>
+                            Due: {" "}
+                            <time dateTime={dueDate}>{formattedDate(dueDate)}</time>
+                          </>
+                        ) : (
+                          <span>No deadline</span>
+                        )}
           </p>
 
-          <p className="text-sm font-medium">
-            {daysLeft! > 0
-              ? `${daysLeft} day${daysLeft === 1 ? "" : "s"} left`
-              : daysLeft === 0
-              ? "Due today"
-              : `${Math.abs(daysLeft!)} day(s) overdue`}
-          </p>
+          {daysLeft != null && (
+            <p
+              className={`text-sm font-medium ${
+                daysLeft < 0 ? "text-red-500" : ""
+              }`}
+            >
+              {daysLeft === 0
+                ? "🔥 Due Today"
+                : daysLeft < 0
+                ? `Overdue by ${Math.abs(daysLeft)} ${
+                    Math.abs(daysLeft) === 1 ? "day" : "days"
+                  }`
+                : `${daysLeft} ${
+                    daysLeft === 1 ? "Day" : "Days"
+                  } left`}
+            </p>
+          )}
         </CardContent>
       </Card>
     </article>
