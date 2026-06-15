@@ -13,6 +13,8 @@ import SettingsTab from "../tabs/SettingsTab"
 import { useGetNotification } from "@/hooks/notification/useGetNotification"
 import { getSortedNotification } from "@/lib/utils"
 
+import Loader from "../components/Loader"
+
 function TabTransition({
   children,
 }: {
@@ -29,19 +31,12 @@ function TabTransition({
   )
 }
 
-const Spinner = () => (
-  <div
-    aria-hidden="true"
-    className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin"
-  />
-)
 
 export default function Dashboard() {
   const { data: notifications = [], isLoading: isLoadingNotifications, isError: isErrorNotifications } = useGetNotification();
   const [searchParams ] = useSearchParams();
   const validTabs = ["overview", "tasks", "notifications", "settings"] as const
 
-  // console.log(notifications)
 
   const tab = validTabs.includes(
     searchParams.get("tab") as typeof validTabs[number]
@@ -52,22 +47,27 @@ export default function Dashboard() {
   const sortedNotifications = getSortedNotification(notifications);
 
   if(isLoadingNotifications) {
+   <Loader />
+  }
+  if(isErrorNotifications) {
     return (
-      <div className="flex justify-center items-center gap-2 h-screen">
-        <Spinner />
-        Loading...
+      <div className="flex justify-center text-red-500 items-center font-semibold gap-2 h-screen">
+        <p>Error loading notifications</p>
       </div>
     )
   }
-  if(isErrorNotifications) {
-    return <div>Error</div>
-  }
   return (
-    <div className="w-full min-h-screen bg-slate-50 bg-white text-black dark:bg-black dark:text-white">
+    <div className="w-full min-h-screen bg-slate-50 text-black
+      bg-gradient-to-br from-slate-950 via-slate-900 
+            to-indigo-950 text-white
+      dark:bg-black dark:text-white">
       <SidebarProvider>
-        <div className='flex min-h-screen w-full'>
+        <div className='flex min-h-screen w-full dark:bg-black dark:text-white'>
           <Sidebar notifications={sortedNotifications} />
-          <main className="flex-1 p-6 space-y-8 min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white">
+          <main className="flex-1 p-6 space-y-8 min-h-screen 
+            
+            dark:bg-black dark:text-white
+          ">
 
             {tab !== "settings" && tab !== "notifications" && <DashboardHeader notifications={sortedNotifications} />}
             {tab === "overview" && (

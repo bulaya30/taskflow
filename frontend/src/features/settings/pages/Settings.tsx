@@ -7,7 +7,7 @@ import DangerZone from "./DangerZone"
 
 export default function Settings() {
   return (
-    <section className="space-y-6 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white">
+    <section className="space-y-6">
       <header>
         <h2 className="text-2xl font-bold">Settings</h2>
         <p className="text-muted-foreground">

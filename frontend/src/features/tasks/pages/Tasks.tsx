@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import TaskCard from '@/features/dashboard/components/TaskCard'
+import TaskCard from '@/features/tasks/components/TaskCard'
 import TaskForm from '@/features/tasks/pages/TaskForm'
 import TaskDrawer from '@/features/tasks/pages/TaskDrawer'
 import type { Task } from '@/interfaces/task'
@@ -101,7 +101,8 @@ export default function Tasks() {
     return ( 
       <section 
         aria-labelledby='task-heading'
-        className='space-y-6 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white'
+        className='space-y-6 
+        '
       >
         <header>
           <h2 id='task-heading' className='text-2xl font-bold tracking-tight mb-2'>Tasks</h2>
@@ -125,12 +126,13 @@ export default function Tasks() {
                     focus-visible:ring-2
                     focus-visible:ring-black
                     relative isolate
+                    cusror-pointer
                   `}
               >
                   {isActive && (
                   <motion.span
                       layoutId="activeFilter"
-                      className="absolute inset-0 rounded-full bg-black"
+                      className="absolute inset-0 rounded-full bg-gray-800 font-semibold"
                       transition={{
                         type: "spring",
                         stiffness: 300,

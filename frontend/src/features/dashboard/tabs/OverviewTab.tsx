@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useGetTasks } from '@/hooks/task/useGetTasks';
 import { useDashboardStore } from '@/store/dashboardStore';
 import { getFilteredTasks } from '@/lib/utils';
+import Loader from '../components/Loader';
 
 export default function OverviewTab() {
   const { data: tasks = [], isLoading: isLoadingTasks, isError: isErrorTasks } = useGetTasks();
@@ -27,17 +28,20 @@ export default function OverviewTab() {
 
   const remainingTasks = totalTasks - completedTasks;
 
-  if(isLoadingTasks) return <div>Loading...</div>
+  if(isLoadingTasks) {<Loader />}
   if(isErrorTasks) return <div>Error</div>
 
   return (
    <>
-    <section aria-label='Task summary' className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950'>
+    <section aria-label='Task summary' 
+      className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-2  
+      dark:bg-black dark:text-white p-2 rounded-lg
+    '>
           <SummaryCard type={'pending'} value={pendingTasks} />
           <SummaryCard type={'completed'} value={completedTasks} />
           <SummaryCard type={'remaining'} value={remainingTasks} />
       </section>
-      <section aria-labelledby='task-heading' className='space-y-4'>
+      <section aria-labelledby='task-heading' className='space-y-4 dark:bg-black dark:text-white p-2 rounded-lg'>
           <div className=''>
             <div className='flex items-center justify-between mb-6'>
               <div>
@@ -64,7 +68,7 @@ export default function OverviewTab() {
                       {isActive && (
                         <motion.span
                           layoutId="activeFilter"
-                          className="absolute inset-0 rounded-full bg-black"
+                          className="absolute inset-0 rounded-full bg-gray-800 font-semibold"
                         />
                       )}
                       <span className={`relative z-10 capitalize ${isActive ? "text-white" : "text-muted-foreground"}`}>

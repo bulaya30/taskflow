@@ -31,7 +31,7 @@ export default function Sidebar({ notifications }: SidebarProps) {
   };
 
   return (
-    <aside className='h-full'>
+    <aside className='h-screen'>
       <nav aria-label="Main navigation">
         <AppSidebar
           className="
@@ -41,6 +41,7 @@ export default function Sidebar({ notifications }: SidebarProps) {
               to-black
               text-white
               border-r border-white/100
+              dark:bg-black dark:text-white
             "
           >
           <SidebarContent className='p-4'>

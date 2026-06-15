@@ -1,6 +1,6 @@
 
 import type { Task } from '@/interfaces/task'
-import TaskCard from './TaskCard'
+import TaskCard from '../../tasks/components/TaskCard'
 type RecentTaskProps = {
     tasks: Task[]
 }

@@ -7,19 +7,23 @@ import { Badge } from '@/components/ui/badge'
 import { Search, Bell } from 'lucide-react'
 import { useDashboardStore } from '@/store/dashboardStore'
 import type { Notification } from '@/interfaces/notification'
+import useAuthStore from '@/store/authStore'
 
 type Props = {
   notifications: Notification[]
 }
 export default function DashboardHeader({ notifications }: Props) {
+  const user = useAuthStore((state) => state.user);
   const search = useDashboardStore((state) => state.search);
   const setSearch = useDashboardStore((state) => state.setSearch);
   const unreadNotifications = notifications.filter(notification => !notification.read).length
   return (
-    <header className="flex items-center justify-between gap-4 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white">
+    <header className="flex items-center justify-between gap-4 
+      mb-2 dark:bg-black dark:text-white p-2 rounded-lg    
+    ">
       <div>
         <h1 className='text-3xl font-bold tracking-tight'>Task Dashboard</h1>
-        <p className='text-sm text-muted-foreground'>Welcome back, Norbert</p>
+        <p className='text-sm text-muted-foreground'>Welcome back, {user?.firstName}</p>
       </div>
       <div className='flex items-center gap-3'>
         <form role='search' className='relative w-64' onSubmit={(e) => e.preventDefault()}>

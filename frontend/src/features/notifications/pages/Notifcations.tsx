@@ -13,7 +13,7 @@ export default function Notifcations() {
     if(isError) return <div>Error</div>;
     
   return (
-    <section className="space-y-6 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white">
+    <section className="space-y-6">
         <header>
             <h2 className="text-2xl font-bold">Notifications</h2>
             <p className="text-muted-foreground">
