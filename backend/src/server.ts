@@ -17,23 +17,23 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 /* ================= MIDDLEWARE ================= */
-// app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }));
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || process.env.CORS_ORIGIN) {
-        callback(null, true)
+      if (
+        !origin ||
+        origin === process.env.CORS_ORIGIN
+      ) {
+        callback(null, true);
       } else {
-        callback(new Error("Not allowed by CORS"))
+        callback(new Error("Not allowed by CORS"));
       }
     },
     credentials: true,
   })
-)
+);
 app.use(express.text());
-app.use(express.json());
 app.use(express.json({ type: ["application/json", "text/plain"] }));
-app.use(express.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
 
 /* ================= API ================= */
@@ -45,14 +45,6 @@ taskReminder.start()
 
 /* ================= STATIC ================= */
 app.use(express.static(path.join(__dirname, '../dist')));
-
-/* ================= SPA FALLBACK ================= */
-app.use((req, res) => {
-  if (req.originalUrl.startsWith('/api')) {
-    return res.status(404).json({ message: 'API route not found' });
-  }
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
 
 // deploying behind Render, Vercel, or NGINX,
 app.set("trust proxy", true);
