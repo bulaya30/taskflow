@@ -32,8 +32,7 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.text());
-app.use(express.json({ type: ["application/json", "text/plain"] }));
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 /* ================= API ================= */
@@ -42,9 +41,6 @@ app.use('/api', webRoutes);
 /* ================= TASK REMINDER ================= */
 const taskReminder = container.resolve<TaskReminder>('taskReminder')
 taskReminder.start()
-
-/* ================= STATIC ================= */
-app.use(express.static(path.join(__dirname, '../dist')));
 
 // deploying behind Render, Vercel, or NGINX,
 app.set("trust proxy", true);
