@@ -110,42 +110,42 @@ export default function Tasks() {
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <motion.nav layout aria-label='Task filters' className="flex items-center gap-2">
-              {buttonFilters.map(item => {
-                  const isActive = filter === item;
-                  return (
-                  <button
-                      key={item}
-                      type='button'
-                      aria-pressed={isActive}
-                      onClick={()=> setFilter(item)}
-                      className={`
-                        px-3 py-1 text-sm rounded-full
-                        transition-all duration-300
-                        focus-visible:outline-none
-                        focus-visible:ring-2
-                        focus-visible:ring-black
-                        relative isolate
-                      `}
-                  >
-                      {isActive && (
-                      <motion.span
-                          layoutId="activeFilter"
-                          className="absolute inset-0 rounded-full bg-black"
-                          transition={{
-                            type: "spring",
-                            stiffness: 300,
-                            damping: 25,
-                          }}
-                      />
-                        
-                      )}
-                      <span className={`relative z-10 capitalize
-                      ${isActive ? "text-white" : "text-muted-foreground"}`}>
-                      {item}
-                      </span>
-                  </button>
-                  )
-              })}
+            {buttonFilters.map(item => {
+              const isActive = filter === item;
+              return (
+              <button
+                  key={item}
+                  type='button'
+                  aria-pressed={isActive}
+                  onClick={()=> setFilter(item)}
+                  className={`
+                    px-3 py-1 text-sm rounded-full
+                    transition-all duration-300
+                    focus-visible:outline-none
+                    focus-visible:ring-2
+                    focus-visible:ring-black
+                    relative isolate
+                  `}
+              >
+                  {isActive && (
+                  <motion.span
+                      layoutId="activeFilter"
+                      className="absolute inset-0 rounded-full bg-black"
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 25,
+                      }}
+                  />
+                    
+                  )}
+                  <span className={`relative z-10 capitalize
+                  ${isActive ? "text-white" : "text-muted-foreground"}`}>
+                  {item}
+                  </span>
+              </button>
+              )
+            })}
 
           </motion.nav>
           <button 

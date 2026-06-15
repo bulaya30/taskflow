@@ -39,24 +39,14 @@ export default function OverviewTab() {
       </section>
       <section aria-labelledby='task-heading' className='space-y-4'>
           <div className=''>
-              <div className='flex items-center justify-between mb-6'>
-                  <div>
-                  <h2 id='task-heading' className='text-2xl font-bold tracking-tight mb-2'>Tasks</h2>
-                  <p className='text-sm text-muted-foreground'>
-                      Manage, track your tasks
-                  </p>
-              </div>
-          </div>
-          {filteredTasks.length === 0 ? (
-            <div className="text-center py-12 mx-auto">
-              <h3 className="font-semibold text-lg">No tasks found</h3>
-              <p className="text-muted-foreground">
-                Try adding one on Task tab.
-              </p>
+            <div className='flex items-center justify-between mb-6'>
+              <div>
+                <h2 id='task-heading' className='text-2xl font-bold tracking-tight mb-2'>Tasks</h2>
+                <p className='text-sm text-muted-foreground'>
+                    Manage, track your tasks
+                </p>
             </div>
-          ) : (
-            <>
-              <motion.nav
+            <motion.nav
                 layout
                 aria-label="Task filters"
                 className="flex items-center gap-2"
@@ -84,8 +74,16 @@ export default function OverviewTab() {
                   );
                 })}
               </motion.nav>
-              <RecentTask tasks={filteredTasks} />
-            </>
+          </div>
+          {filteredTasks.length === 0 ? (
+            <div className="text-center py-12 mx-auto">
+              <h3 className="font-semibold text-lg">No tasks found</h3>
+              <p className="text-muted-foreground">
+                Try adding one on Task tab.
+              </p>
+            </div>
+          ) : (
+            <RecentTask tasks={filteredTasks} />
           )}
         </div>
       </section>
