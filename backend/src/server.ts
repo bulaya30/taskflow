@@ -18,7 +18,8 @@ const app = express();
 
 /* ================= MIDDLEWARE ================= */
 const allowedOrigins = [
-  process.env.CORS_ORIGIN
+  process.env.CORS_ORIGIN,
+  "http://localhost:5173",
 ].filter(Boolean);
 
 app.use(
