@@ -15,6 +15,7 @@ import { motion } from 'framer-motion'
 import { useGetTasks } from '@/hooks/task/useGetTasks'
 import { useDashboardStore } from '@/store/dashboardStore'
 import { getFilteredTasks } from '@/lib/utils'
+import Loader from '@/features/dashboard/components/Loader'
 
 
 type LoadingState = {
@@ -95,7 +96,7 @@ export default function Tasks() {
         })
     }
 
-    if(isLoadingTasks) return <p>Loading...</p>
+    if(isLoadingTasks) {<Loader />}
     if(isErrorTasks) return <p>Error</p>
     
     return ( 

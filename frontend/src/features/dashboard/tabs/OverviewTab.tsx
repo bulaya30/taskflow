@@ -26,7 +26,6 @@ export default function OverviewTab() {
     (task) => !task.completed
   ).length;
 
-  const remainingTasks = totalTasks - completedTasks;
 
   if(isLoadingTasks) {<Loader />}
   if(isErrorTasks) return <div>Error</div>
@@ -37,9 +36,9 @@ export default function OverviewTab() {
       className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-2  
       dark:bg-black dark:text-white p-2 rounded-lg
     '>
+          <SummaryCard type={'total'} value={totalTasks} />
           <SummaryCard type={'pending'} value={pendingTasks} />
           <SummaryCard type={'completed'} value={completedTasks} />
-          <SummaryCard type={'remaining'} value={remainingTasks} />
       </section>
       <section aria-labelledby='task-heading' className='space-y-4 dark:bg-black dark:text-white p-2 rounded-lg'>
           <div className=''>

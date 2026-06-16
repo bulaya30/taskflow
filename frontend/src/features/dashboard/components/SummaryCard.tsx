@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Clock, CheckCircle, Hourglass, type LucideIcon } from "lucide-react"
+import { ListTodo, Clock, CheckCircle, type LucideIcon } from "lucide-react"
 
-type SummaryCardType = "pending" | "completed" | "remaining"
+type SummaryCardType = "total" |"pending" | "completed"
 
 type SummaryCardProps = {
     type: SummaryCardType,
@@ -13,6 +13,10 @@ const cardStyles : Record<
         color : string
     }
 > = {
+  total: {
+    icon: ListTodo,
+    color: "text-violet-600",
+  },
   pending: {
     icon: Clock,
     color: "text-blue-600"
@@ -21,15 +25,11 @@ const cardStyles : Record<
     icon: CheckCircle,
     color: "text-green-600"
   },
-  remaining: {
-    icon: Hourglass,
-    color: "text-amber-600"
-  }
 }
 const labels : Record<SummaryCardType, string> = {
+    total: "Total",
     pending: "Pending",
     completed: "Completed",
-    remaining: "Remaining"
 }
     
 export default function SummaryCard({type, value} : SummaryCardProps) {    
