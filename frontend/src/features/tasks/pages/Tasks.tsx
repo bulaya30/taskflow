@@ -101,7 +101,7 @@ export default function Tasks() {
     return ( 
       <section 
         aria-labelledby='task-heading'
-        className='space-y-6 
+        className='w-full min-h-screen space-y-6 
         '
       >
         <header>
@@ -109,7 +109,7 @@ export default function Tasks() {
           <p className='text-sm text-muted-foreground'>Manage, organize and track your work.</p>
         </header>
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div className="flex flex-row items-center justify-between gap-4">
           <motion.nav layout aria-label='Task filters' className="flex items-center gap-2">
             {buttonFilters.map(item => {
               const isActive = filter === item;
@@ -155,7 +155,7 @@ export default function Tasks() {
                   setIsOpen(true)
                   setEditingTask(null)
               }}
-              className="px-3 py-2 text-sm bg-black text-white rounded-md cursor-pointer"
+              className="px-3 py-2 text-sm bg-gray-800 font-semibold text-white rounded-md cursor-pointer"
           >
               + New Task
           </button>

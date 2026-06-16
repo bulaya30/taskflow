@@ -164,7 +164,7 @@ export default function TaskForm({ onSubmit, task, isLoading }: TaskFormProps) {
       {/* ACTION */}
       <Button 
         type="submit" 
-        className="w-full h-12 cursor-pointer rounded-xl bg-black/70 text-white font-semibold hover:scale-[1.02] transition"
+        className="w-full h-12 cursor-pointer rounded-xl bg-gray-800 font-semibold text-white font-semibold hover:scale-[1.02] transition"
         disabled={isLoading}
       >
         {isLoading ? (

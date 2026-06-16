@@ -3,7 +3,6 @@ import { motion } from "framer-motion"
 import { SidebarProvider } from "@/components/ui/sidebar"
 
 import DashboardHeader from "@/features/dashboard/components/DashboardHeader"
-import Sidebar from "@/features/dashboard/components/Sidebar"
 
 import OverviewTab from "@/features/dashboard/tabs/OverviewTab"
 import TasksTab from "@/features/dashboard/tabs/TasksTab"
@@ -14,6 +13,8 @@ import { useGetNotification } from "@/hooks/notification/useGetNotification"
 import { getSortedNotification } from "@/lib/utils"
 
 import Loader from "../components/Loader"
+import MobileNavbar from "@/features/sidebar/components/MobileNavbar"
+import DesktopSidebar from "@/features/sidebar/pages/DesktopSiderbar"
 
 function TabTransition({
   children,
@@ -63,37 +64,46 @@ export default function Dashboard() {
       dark:bg-black dark:text-white">
       <SidebarProvider>
         <div className='flex min-h-screen w-full dark:bg-black dark:text-white'>
-          <Sidebar notifications={sortedNotifications} />
-          <main className="flex-1 p-6 space-y-8 min-h-screen 
-            
-            dark:bg-black dark:text-white
-          ">
+          
+          <DesktopSidebar notifications={sortedNotifications} />
 
-            {tab !== "settings" && tab !== "notifications" && <DashboardHeader notifications={sortedNotifications} />}
-            {tab === "overview" && (
-              <TabTransition>
-                <OverviewTab
-                />
-              </TabTransition>
-            )}
-            {tab === "tasks" && (
-              <TabTransition>
-                <TasksTab 
-                />
-              </TabTransition>
-            )}
-            {tab === "notifications" && (
-              <TabTransition>
-                <NotificationsTab/>
-              </TabTransition>
-            )}
-            {tab === "settings" && (
-              <TabTransition >
-                <SettingsTab/>
-              </TabTransition>
-            )}
+          <div className="flex flex-col flex-1">
 
-          </main>
+            <MobileNavbar
+              notifications={sortedNotifications}
+            />
+
+            <main className="flex-1 p-6 space-y-8 min-h-screen 
+              
+              dark:bg-black dark:text-white
+            ">
+
+              {tab !== "settings" && tab !== "notifications" && <DashboardHeader notifications={sortedNotifications} />}
+              {tab === "overview" && (
+                <TabTransition>
+                  <OverviewTab
+                  />
+                </TabTransition>
+              )}
+              {tab === "tasks" && (
+                <TabTransition>
+                  <TasksTab 
+                  />
+                </TabTransition>
+              )}
+              {tab === "notifications" && (
+                <TabTransition>
+                  <NotificationsTab/>
+                </TabTransition>
+              )}
+              {tab === "settings" && (
+                <TabTransition >
+                  <SettingsTab/>
+                </TabTransition>
+              )}
+
+            </main>
+          </div>
         </div>
       
       </SidebarProvider>
