@@ -49,7 +49,7 @@ export default function Tasks() {
         if (editingTask) {
             updateMutation.mutate(
             {
-                id: editingTask.id,
+                id: editingTask.id!,
                 data,
             },
             {
@@ -69,15 +69,15 @@ export default function Tasks() {
     }
 
     const handleToggleComplete = (task: Task) => {
-        setLoadingState({ id: task.id, action: "complete" })
+        setLoadingState({ id: task.id!, action: "complete" })
         if(!task.completed) {
-            completeMutation.mutate(task.id, {
+            completeMutation.mutate(task.id!, {
                 onSettled: () => setLoadingState(null),
             })
         } else {
             updateMutation.mutate(
             {
-                id: task.id,
+                id: task.id!,
                 data: { completed: !task.completed },
             },
             {
@@ -182,15 +182,15 @@ export default function Tasks() {
                                 setEditingTask(task)
                                 setIsOpen(true)
                             }}
-                            onDelete={() => handleDelete(task.id)}
+                            onDelete={() => handleDelete(task.id!)}
                             onToggleComplete={() => handleToggleComplete(task)}
                             isCompleting={
                                 loadingState?.id === task.id &&
-                                loadingState.action === "complete"
+                                loadingState?.action === "complete"
                             }
                             isDeleting={
                                 loadingState?.id === task.id &&
-                                loadingState.action === "delete"
+                                loadingState?.action === "delete"
                             }
                         />
                       ))}

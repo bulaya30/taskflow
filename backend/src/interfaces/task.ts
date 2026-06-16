@@ -1,5 +1,11 @@
 
 export type Priority = "HIGH" | "MEDIUM" | "LOW"
+export type FirestoreDate =
+  | string
+  | {
+      _seconds: number;
+      _nanoseconds: number;
+    };
 
 export interface Task {
     id?: string,
@@ -11,8 +17,8 @@ export interface Task {
     priority: Priority,
     date?: string,
     active?: boolean,
-    createdAt?: string | object,
-    updatedAt?: string | object
+    createdAt?: FirestoreDate
+    updatedAt?: FirestoreDate
     daysLeft?: number | null,
     isOverdue?: boolean,
     isDueToday?: boolean,    

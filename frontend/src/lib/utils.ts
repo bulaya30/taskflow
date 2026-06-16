@@ -85,10 +85,21 @@ export const getFilteredTasks = (
       return matchesFilter && matchesSearch;
     })
     .sort((a, b) => {
+      // Pending first
       if (a.completed !== b.completed) {
         return a.completed ? 1 : -1;
       }
-      return priorityOrder[b.priority] - priorityOrder[a.priority];
+
+      // Higher priority first
+      if (a.priority !== b.priority) {
+        return priorityOrder[b.priority] - priorityOrder[a.priority];
+      }
+
+      // Newest first
+      return (
+        firestoreToDate(b.createdAt) -
+        firestoreToDate(a.createdAt)
+      );
     });
 };
 
