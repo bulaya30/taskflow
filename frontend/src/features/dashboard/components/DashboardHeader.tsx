@@ -18,14 +18,47 @@ export default function DashboardHeader({ notifications }: Props) {
   const setSearch = useDashboardStore((state) => state.setSearch);
   const unreadNotifications = notifications.filter(notification => !notification.read).length
   return (
-    <header className="flex items-center justify-between gap-4 
+    <header className="
+      w-full
+      flex
+      flex-col
+      gap-4
+
+      md:flex-row
+      md:items-center
+      md:justify-between
+
+      p-2
+      rounded-lg
       mb-2 dark:bg-black dark:text-white p-2 rounded-lg    
     ">
-      <div>
-        <h1 className='text-3xl font-bold tracking-tight'>Task Dashboard</h1>
-        <p className='text-sm text-muted-foreground'>Welcome back, {user?.firstName}</p>
+      <div className="space-y-1">
+        <h1
+          className="
+            text-2xl
+            md:text-3xl
+            font-bold
+            tracking-tight
+          "
+        >
+          Task Dashboard
+        </h1>
+
+        <p className="text-sm text-muted-foreground">
+          Welcome back, {user?.firstName}
+        </p>
       </div>
-      <div className='flex items-center gap-3'>
+      <div
+        className="
+          flex
+          w-full
+          items-center
+          gap-2
+
+          md:w-auto
+          md:gap-3
+        "
+      >
         <form role='search' className='relative w-64' onSubmit={(e) => e.preventDefault()}>
           <Label htmlFor='task-search' className='sr-only'>
             Search tasks

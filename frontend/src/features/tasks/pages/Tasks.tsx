@@ -100,18 +100,39 @@ export default function Tasks() {
     if(isErrorTasks) return <p>Error</p>
     
     return ( 
-      <section 
-        aria-labelledby='task-heading'
-        className='w-full min-h-screen space-y-6 
-        '
-      >
-        <header>
+      <section
+        aria-labelledby="task-heading"
+        className="
+            w-full
+            min-w-0
+            space-y-6
+        "
+    >
+        <header className='space-y-1'>
           <h2 id='task-heading' className='text-2xl font-bold tracking-tight mb-2'>Tasks</h2>
           <p className='text-sm text-muted-foreground'>Manage, organize and track your work.</p>
         </header>
 
-        <div className="flex flex-row items-center justify-between gap-4">
-          <motion.nav layout aria-label='Task filters' className="flex items-center gap-2">
+        <div
+            className="
+                flex
+                flex-col
+                gap-4
+
+                sm:flex-row
+                sm:items-center
+                sm:justify-between
+            "
+        >
+          <motion.nav layout aria-label='Task filters' 
+            className="
+                flex
+                gap-2
+                overflow-x-auto
+                scrollbar-hide
+                pb-1
+            "
+          >
             {buttonFilters.map(item => {
               const isActive = filter === item;
               return (
@@ -127,7 +148,7 @@ export default function Tasks() {
                     focus-visible:ring-2
                     focus-visible:ring-black
                     relative isolate
-                    cusror-pointer
+                    cursor-pointer
                   `}
               >
                   {isActive && (
@@ -156,7 +177,22 @@ export default function Tasks() {
                   setIsOpen(true)
                   setEditingTask(null)
               }}
-              className="px-3 py-2 text-sm bg-gray-800 font-semibold text-white rounded-md cursor-pointer"
+              className="
+                    w-full
+                    sm:w-auto
+
+                    px-4
+                    py-2
+
+                    bg-gray-800
+                    font-semibold
+                    text-white
+                    rounded-md
+                    cursor-pointer
+
+                    hover:bg-gray-700
+                    transition
+                "
           >
               + New Task
           </button>
@@ -164,14 +200,19 @@ export default function Tasks() {
 
         <div>
           {filteredTasks.length === 0 ? (
-              <div className="text-center py-12">
+              <div className="text-center py-10 px-4">
                   <h3 className="font-semibold">No tasks found</h3>
                   <p className="text-muted-foreground">
                       Try changing your filters or create a new task.
                   </p>
               </div>
               ) : (
-                  <div className='space-y-6'>
+                  <div
+                        className="
+                            space-y-4
+                            md:space-y-6
+                        "
+                    >
                       {filteredTasks.map((task) => (
                         
                         <TaskCard

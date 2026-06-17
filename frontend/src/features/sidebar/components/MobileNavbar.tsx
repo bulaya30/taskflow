@@ -25,14 +25,16 @@ export default function MobileNavbar({
   return (
     <header
       className="
-        md:hidden
         sticky
         top-0
         z-50
-        flex
         h-14
+        w-full
+        md:hidden
+        flex
         items-center
-        justify-left
+        justify-between
+        px-4
         gap-2
         border-b
         border-white/10

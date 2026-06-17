@@ -31,7 +31,9 @@ export default function MobileSidebar({
     <aside
       className="
       flex
-      h-full
+      min-h-screen
+      w-full
+      overflow-x-hidden
       flex-col
       bg-gradient-to-br
       from-black

@@ -33,7 +33,12 @@ export default function OverviewTab() {
   return (
    <>
     <section aria-label='Task summary' 
-      className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-2  
+      className='
+      grid
+      grid-cols-1
+      sm:grid-cols-1
+      lg:grid-cols-3
+      gap-4
       dark:bg-black dark:text-white p-2 rounded-lg
     '>
           <SummaryCard type={'total'} value={totalTasks} />

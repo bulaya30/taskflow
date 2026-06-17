@@ -65,16 +65,22 @@ export default function Dashboard() {
       <SidebarProvider>
         <div className='flex min-h-screen w-full dark:bg-black dark:text-white'>
           
-          <DesktopSidebar notifications={sortedNotifications} />
+          <div className="hidden md:block">
+            <DesktopSidebar notifications={sortedNotifications} />
+          </div>
 
-          <div className="flex flex-col flex-1">
+          <div className="flex flex-col flex-1 min-w-0">
 
             <MobileNavbar
               notifications={sortedNotifications}
             />
 
-            <main className="flex-1 p-6 space-y-8 min-h-screen 
-              
+            <main className="
+              flex-1
+              p-4
+              md:p-6
+              space-y-6
+              min-w-0              
               dark:bg-black dark:text-white
             ">
 
