@@ -17,8 +17,8 @@ export interface Task {
     priority: Priority,
     date?: string,
     active?: boolean,
-    createdAt?: FirestoreDate
-    updatedAt?: FirestoreDate
+    createdAt?: string | object,
+    updatedAt?: string | object,
     daysLeft?: number | null,
     isOverdue?: boolean,
     isDueToday?: boolean,    
