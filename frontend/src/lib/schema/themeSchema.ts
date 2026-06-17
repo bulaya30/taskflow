@@ -2,7 +2,7 @@
 import { z } from "zod"
 
 export const themeSchema = z.object({
-  theme: z.enum(["light", "dark", "system"]),
+  theme: z.enum([ "dark", "default"]),
 })
 
 export type ThemeFormValues = z.infer<typeof themeSchema>

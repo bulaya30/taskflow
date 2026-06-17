@@ -1,17 +1,16 @@
-
-type Theme = "light" | "dark" | "system"
+import type { ThemeType } from "@/interfaces/setting"
 
 const THEME_KEY = "taskflow-theme"
 
-export function getStoredTheme(): Theme {
-  return (localStorage.getItem(THEME_KEY) as Theme) || "system"
+export function getStoredTheme(): ThemeType {
+  return (localStorage.getItem(THEME_KEY) as ThemeType) || "default"
 }
 
-export function setStoredTheme(theme: Theme) {
+export function setStoredTheme(theme: ThemeType) {
   localStorage.setItem(THEME_KEY, theme)
 }
 
-export function applyTheme(theme: Theme) {
+export function applyTheme(theme: ThemeType) {
   const root = document.documentElement
 
   root.classList.remove("light", "dark")

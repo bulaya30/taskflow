@@ -165,11 +165,6 @@ export default function ThemeCard() {
                 }
                 className="space-y-3"
               >
-                <label className="flex items-center justify-between rounded-md border p-3 cursor-pointer transition hover:bg-muted/30">
-                  <span>Light</span>
-
-                  <RadioGroupItem value="light" />
-                </label>
 
                 <label className="flex items-center justify-between rounded-md border p-3 cursor-pointer transition hover:bg-muted/30">
                   <span>Dark</span>
@@ -178,9 +173,9 @@ export default function ThemeCard() {
                 </label>
 
                 <label className="flex items-center justify-between rounded-md border p-3 cursor-pointer transition hover:bg-muted/30">
-                  <span>System</span>
+                  <span>default</span>
 
-                  <RadioGroupItem value="system" />
+                  <RadioGroupItem value="default" />
                 </label>
               </RadioGroup>
             </fieldset>

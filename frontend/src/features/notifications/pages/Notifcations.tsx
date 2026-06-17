@@ -15,7 +15,7 @@ export default function Notifcations() {
   return (
     <section className="space-y-6">
         <header>
-            <h2 className="text-2xl font-bold">Notifications</h2>
+            <h1 className="text-2xl font-bold">Notifications</h1>
             <p className="text-muted-foreground">
                 Your notifications.
             </p>

@@ -49,7 +49,7 @@ export default function OverviewTab() {
           <div className=''>
             <div className='flex items-center justify-between mb-6'>
               <div>
-                <h2 id='task-heading' className='text-2xl font-bold tracking-tight mb-2'>Tasks</h2>
+                <h1 id='task-heading' className='text-2xl font-bold tracking-tight mb-2'>Tasks</h1>
                 <p className='text-sm text-muted-foreground'>
                     Manage, track your tasks
                 </p>

@@ -29,7 +29,7 @@ export default class SettingsRepository {
     return await db.add( COLLECTION, {
         uid,
         email: false,
-        theme: "system",
+        theme: "default",
         remind: false,
         dueDataAlert: false,
     }) as Setting;

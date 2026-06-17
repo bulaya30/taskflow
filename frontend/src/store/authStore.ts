@@ -8,7 +8,7 @@ type User = {
   email: string
 }
 
-type Theme = "light" | "dark" | "system";
+type Theme = "dark" | "default";
 
 type AuthState = {
   user: User | null
@@ -29,13 +29,13 @@ const useAuthStore = create<AuthState>()(
       user: null,
       token: null,
       isAuthenticated: false,
-      theme: 'system',
+      theme: 'default',
 
       login: (user, token) =>
         set({ user, token, isAuthenticated: true }),
 
       logout: () =>
-        set({ user: null, token: null, isAuthenticated: false, theme: 'system' }),
+        set({ user: null, token: null, isAuthenticated: false, theme: 'default' }),
 
       setToken: (token) => set({ token }),
 

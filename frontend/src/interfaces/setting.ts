@@ -1,8 +1,10 @@
+export type ThemeType = 'dark' | 'default'
+
 export interface Setting {
     id: string | number,
     uid: string | number,
     email: boolean,
-    theme: 'light' | 'dark' | 'system',
+    theme: ThemeType,
     remind: boolean,
     dueDateAlert: boolean,
 }
