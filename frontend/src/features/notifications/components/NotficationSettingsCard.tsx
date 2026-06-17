@@ -21,6 +21,9 @@ import { useGetSettings } from "@/hooks/setting/useGetSettings"
 import { useUpdateSetting } from "@/hooks/setting/useUpdateSetting"
 import { useCreateSetting } from "@/hooks/setting/useCreateSetting"
 
+import { Loader2, Save } from "lucide-react"
+import Loader from "@/features/dashboard/components/Loader"
+
 export default function NotificationCard() {
   const {
     data: settings,
@@ -30,9 +33,6 @@ export default function NotificationCard() {
 
   const createMutation = useCreateSetting()
   const updateMutation = useUpdateSetting()
-
-  
-  
 
   const {
     control,
@@ -86,7 +86,7 @@ export default function NotificationCard() {
         `}
       >
         <CardContent className="py-10 text-center">
-          Loading settings...
+          <Loader />
         </CardContent>
       </Card>
     )
@@ -230,8 +230,9 @@ export default function NotificationCard() {
               <Button
                 type="submit"
                 disabled={isSaving}
+                className="hover:bg-gray-700 cursor-pointer"
               >
-                {isSaving ? "Saving..." : "Save Changes"}
+                {isSaving ? (<Loader2 className="animate-spin" />) : (<Save />)}
               </Button>
             </footer>
           </form>

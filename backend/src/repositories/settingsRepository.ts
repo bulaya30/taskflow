@@ -14,8 +14,10 @@ export default class SettingsRepository {
         return await db.get(COLLECTION, 'id', id) as Setting | null
     }
 
-    async findByUser(uid: string): Promise<Setting> {
-        return await db.get(COLLECTION, 'userId', uid) as Setting
+    async findByUser(uid: string): Promise<Setting | null> {
+        const [setting] = (await db.get(COLLECTION, "uid", uid)) as Setting[];
+
+        return setting ?? null;
     }
 
     async create(data: Setting): Promise<Setting> {

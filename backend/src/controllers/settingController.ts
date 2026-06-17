@@ -30,7 +30,7 @@ export default class SettingController {
       const userId = req.user!.id
 
       const settings = await this.settingService.getUserSettings(userId)
-
+      console.log(settings)
       return res.status(200).json(settings)
     } catch (error: any) {
       return res.status(400).json({

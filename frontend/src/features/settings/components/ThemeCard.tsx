@@ -23,10 +23,13 @@ import {
 import { useGetSettings } from "@/hooks/setting/useGetSettings"
 import { useUpdateSetting } from "@/hooks/setting/useUpdateSetting"
 
+import { Save, Loader2 } from "lucide-react"
+
 import {
   applyTheme,
 } from "@/lib/theme"
 import useAuthStore from "@/store/authStore"
+import Loader from "@/features/dashboard/components/Loader"
 
 export default function ThemeCard() {
   const {
@@ -63,7 +66,6 @@ export default function ThemeCard() {
     setTheme(settings.theme)
     applyTheme(settings.theme)
   }, [settings, setValue])
-
   
   useEffect(() => {
     applyTheme(currentTheme)
@@ -72,7 +74,6 @@ export default function ThemeCard() {
   const onSubmit = (data: ThemeFormValues) => {
     if (!settings?.id) return
 
-    // instant update
     setTheme(data.theme)
     applyTheme(data.theme)
 
@@ -96,7 +97,7 @@ export default function ThemeCard() {
         `}
         >
           <CardContent className="py-8 text-center">
-            Loading...
+            <Loader />
           </CardContent>
         </Card>
       </article>
@@ -187,14 +188,14 @@ export default function ThemeCard() {
             <footer className="flex justify-end">
               <Button
                 type="submit"
-                className="cursor-pointer"
+                className="cursor-pointer hover:bg-gray-700"
                 disabled={
                   isSubmitting ||isPending
                 }
               >
                 {isPending
-                  ? "Saving..."
-                  : "Save Theme"}
+                  ? (<Loader2 className="animate-spin"/>)
+                  : (<Save className=""/>)}
               </Button>
             </footer>
           </form>

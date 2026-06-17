@@ -4,6 +4,7 @@ import { useDeleteUser } from "@/hooks/user/useDeleteUser"
 import { useGetTasks } from "@/hooks/task/useGetTasks"
 import { useDeleteTask } from "@/hooks/task/useDeleteTask"
 import { useState } from "react"
+import Loader from "@/features/dashboard/components/Loader"
 
 type ActionItem = {
   label: string
@@ -14,9 +15,9 @@ type ActionItem = {
 }
 
 type LoadingState =
-  | "delete account"
-  | "clear completed task"
-  | "reset tasks"
+  | "Delete Account"
+  | "Clear Completed Tasks"
+  | "Reset Tasks"
   | null;
 
 export default function DangerZone() {
@@ -54,19 +55,19 @@ export default function DangerZone() {
   ]
 
   const handleAccountDeletion = () => {
-    setLoadingState("delete account");
+    setLoadingState("Delete Account");
     deleteUserMutate.mutate()
   }
 
   const handleClearCompletedTasks = () => {
     if (completedTasks.length === 0) return;
 
-    setLoadingState("clear completed task");
+    setLoadingState("Clear Completed Tasks");
 
     const promises = completedTasks.map(
       (task) =>
         new Promise<void>((resolve) => {
-          deleteTaskMutate.mutate(task.id, {
+          deleteTaskMutate.mutate(task.id!, {
             onSettled: () => resolve(),
           });
         })
@@ -79,12 +80,12 @@ export default function DangerZone() {
     const handleResetTasks = () => {
     if (tasks.length === 0) return;
 
-    setLoadingState("reset tasks");
+    setLoadingState("Reset Tasks");
 
     const promises = tasks.map(
       (task) =>
         new Promise<void>((resolve) => {
-          deleteTaskMutate.mutate(task.id, {
+          deleteTaskMutate.mutate(task.id!, {
             onSettled: () => resolve(),
           });
         })
@@ -95,8 +96,8 @@ export default function DangerZone() {
     });
   };
 
-  if(tasksLoading) return <p>Loading...</p>
-    if(taskError) return <p>Error</p>
+  if(tasksLoading) (<Loader />)
+  if(taskError) return <p>Error</p>
 
   return (
     <section aria-labelledby="danger-zone-title" className="p-4 rounded text-red-600 space-y-4">

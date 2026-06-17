@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/button"
 
 import { useUpdateUser } from "@/hooks/user/useUpdateUser"
 
+import { Save, Loader2 } from "lucide-react"
+
 import {
   profileSchema,
   type ProfileFormValues,
@@ -32,7 +34,7 @@ export default function ProfileCard() {
   })
 
   const updareProfile = useUpdateUser()
-  const isLoading = updareProfile.isPaused
+  const isLoading = updareProfile.isPending
 
   const onSubmit = async (data: ProfileFormValues) => {
     const payload = {
@@ -171,11 +173,12 @@ export default function ProfileCard() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="sm:w-auto cursor-pointer hover:bg-black"
+                className="sm:w-auto cursor-pointer hover:bg-gray-700"
               >
                 {isLoading
-                  ? "Saving..."
-                  : "Save Changes"}
+                  ? (<Loader2 className="w-2 h-2 animate-spin"/>)
+                  : (<Save size={20} className="w-4 h-4 hover:text-white"/>)
+                }
               </Button>
             </footer>
           </form>
