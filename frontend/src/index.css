@@ -128,6 +128,42 @@
     @apply font-sans;
     }
 }
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+
+  /* Fallback color while gradients load */
+  background-color: rgb(2 6 23);
+
+  /* Your default TaskFlow background */
+  background-image: linear-gradient(
+    135deg,
+    rgb(2 6 23),
+    rgb(15 23 42),
+    rgb(49 46 129)
+  );
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+  color: white;
+}
+
 body {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
