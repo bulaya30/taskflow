@@ -118,13 +118,14 @@ export default function Tasks() {
                 flex
                 flex-col
                 gap-4
-
                 sm:flex-row
                 sm:items-center
                 sm:justify-between
             "
         >
-          <motion.nav layout aria-label='Task filters' 
+          <motion.nav 
+            layout 
+            aria-label='Task filters' 
             className="
                 flex
                 gap-2
@@ -173,28 +174,25 @@ export default function Tasks() {
 
           </motion.nav>
           <button 
-              onClick={() => {
-                  setIsOpen(true)
-                  setEditingTask(null)
-              }}
-              className="
-                    w-full
-                    sm:w-auto
-
-                    px-4
-                    py-2
-
-                    bg-gray-800
-                    font-semibold
-                    text-white
-                    rounded-md
-                    cursor-pointer
-
-                    hover:bg-gray-700
-                    transition
-                "
+            onClick={() => {
+                setIsOpen(true)
+                setEditingTask(null)
+            }}
+            className="
+              w-full
+              sm:w-auto
+              px-4
+              py-2
+              bg-gray-800
+              font-semibold
+              text-white
+              rounded-md
+              cursor-pointer
+              hover:bg-gray-700
+              transition
+            "
           >
-              + New Task
+            + New Task
           </button>
         </div>
 
