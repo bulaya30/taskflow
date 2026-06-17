@@ -2,6 +2,8 @@ import { useState } from 'react'
 import TaskCard from '@/features/tasks/components/TaskCard'
 import TaskForm from '@/features/tasks/pages/TaskForm'
 import TaskDrawer from '@/features/tasks/pages/TaskDrawer'
+import ExportPdfButton from '@/features/tasks/components/ExportPdfButton'
+
 import type { Task } from '@/interfaces/task'
 import type { TaskFormValues } from '@/lib/schema/TaskSchema'
 
@@ -109,7 +111,7 @@ export default function Tasks() {
         "
     >
         <header className='space-y-1'>
-          <h2 id='task-heading' className='text-2xl font-bold tracking-tight mb-2'>Tasks</h2>
+          <h1 id='task-heading' className='text-2xl font-bold tracking-tight mb-2'>Tasks</h1>
           <p className='text-sm text-muted-foreground'>Manage, organize and track your work.</p>
         </header>
 
@@ -173,27 +175,35 @@ export default function Tasks() {
             })}
 
           </motion.nav>
-          <button 
-            onClick={() => {
-                setIsOpen(true)
-                setEditingTask(null)
-            }}
-            className="
-              w-full
-              sm:w-auto
-              px-4
-              py-2
-              bg-gray-800
-              font-semibold
-              text-white
-              rounded-md
-              cursor-pointer
-              hover:bg-gray-700
-              transition
-            "
-          >
-            + New Task
-          </button>
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+
+                <ExportPdfButton
+                    tasks={filteredTasks}
+                />
+
+                <button
+                onClick={() => {
+                    setIsOpen(true);
+                    setEditingTask(null);
+                }}
+                className="
+                    w-full
+                    sm:w-auto
+                    px-4
+                    py-2
+                    bg-gray-800
+                    font-semibold
+                    text-white
+                    rounded-md
+                    cursor-pointer
+                    hover:bg-gray-700
+                    transition
+                "
+                >
+                + New Task
+                </button>
+
+            </div>
         </div>
 
         <div>
