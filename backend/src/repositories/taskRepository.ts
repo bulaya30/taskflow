@@ -30,15 +30,12 @@ export default class TaskRepository {
     }
 
     async reset(userId: string): Promise<boolean> {
-
         const tasks = await this.findByUser(userId);
-
         await Promise.all(
             tasks
-                .filter(task => task.id)
-                .map(task => db.remove(COLLECTION, task.id!))
-        );
-
-        return true;
+            .filter(task => task.id)
+            .map(task => db.remove(COLLECTION, task.id!))
+        )
+        return true
     }
 }

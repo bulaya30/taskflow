@@ -6,18 +6,17 @@ const COLLECTION = 'settings'
 
 
 export default class SettingsRepository {
-    async findAll(field?: string, value?: string): Promise<Setting | Setting[] | null> {
-        return await db.get(COLLECTION, field, value) as Setting | Setting[] | null
+    async findAll(field?: string, value?: string): Promise< Setting[] | null> {
+        return await db.get(COLLECTION, field, value) as  Setting[] | null
     }
 
     async findById(id:string): Promise<Setting | null> {
-        return await db.get(COLLECTION, 'id', id) as Setting | null
+        return await db.get(COLLECTION, 'id', id) as Setting
     }
 
     async findByUser(uid: string): Promise<Setting | null> {
         const [setting] = (await db.get(COLLECTION, "uid", uid)) as Setting[];
-
-        return setting ?? null;
+        return setting ?? null
     }
 
     async create(data: Setting): Promise<Setting> {
@@ -32,7 +31,7 @@ export default class SettingsRepository {
         theme: "default",
         remind: false,
         dueDataAlert: false,
-    }) as Setting;
+    }) as Setting
 }
 
     async update(id: string, data: Partial<Setting>): Promise<boolean> {
@@ -43,14 +42,6 @@ export default class SettingsRepository {
         return await db.remove(COLLECTION, id)
     }
 
-    async deleteAll(uid: string): Promise<boolean> {
-        const settings = await this.findByUser(uid);
-
-        if(!settings) return false;
-        
-        return await db.remove(COLLECTION, settings.id!)
-    }
-
 
     async reset(userId: string): Promise<boolean> {
 
@@ -58,8 +49,7 @@ export default class SettingsRepository {
         if(!settings) return false;
 
         await  db.remove(COLLECTION, settings.id!)
-
-        return true;
+        return true
     }
 }
 

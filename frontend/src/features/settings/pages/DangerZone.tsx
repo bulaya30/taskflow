@@ -96,7 +96,7 @@ export default function DangerZone() {
     });
   };
 
-  if(tasksLoading) (<Loader />)
+  if(tasksLoading) return <Loader />
   if(taskError) return <p>Error</p>
 
   return (

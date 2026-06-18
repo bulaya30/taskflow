@@ -7,8 +7,8 @@ const COLLECTION = 'users'
 
 
 export default class UserRepository {
-    async findAll(field?: string, value?: string): Promise<User | User[] | null> {
-        return await db.get(COLLECTION, field, value) as User | User[] | null
+    async findAll(field?: string, value?: string): Promise<User[] | null> {
+        return await db.get(COLLECTION, field, value) as User[] | null
     }
 
     async findById(id:string): Promise<User | null> {
@@ -32,6 +32,7 @@ export default class UserRepository {
     }
 
     async delete(id:string):Promise<boolean> {
+        
         await auth.deleteUser(id)
         return await db.remove(COLLECTION, id)
     }

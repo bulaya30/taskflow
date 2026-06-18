@@ -102,23 +102,17 @@ export default class NotificationService {
   }
 
   async deleteNotification(id: string):Promise<boolean> {
-
     await this.checkNotification(id);
-
-    return await this.notificationRepository.delete(id);
+    return await this.notificationRepository.delete(id)
   }
 
   async deleteAllNotification(uid: string): Promise<boolean> {
-
     await this.checkUser(uid)
-
     return await this.notificationRepository.deleteAll(uid)
   }
 
   async resetAllNotification(uid: string): Promise<boolean> {
-
     await this.checkUser(uid)
-
     return await this.notificationRepository.reset(uid)
   }
 }

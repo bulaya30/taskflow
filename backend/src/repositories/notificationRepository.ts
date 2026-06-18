@@ -6,12 +6,12 @@ const COLLECTION = 'notifications'
 
 
 export default class NotificationRepository {
-    async findAll(field?: string, value?: string): Promise<Notification | Notification[] | null> {
-        return await db.get(COLLECTION, field, value) as Notification | Notification[] | null
+    async findAll(field?: string, value?: string): Promise< Notification[] | null> {
+        return await db.get(COLLECTION, field, value) as Notification[] | null
     }
 
     async findById(id:string): Promise<Notification | null> {
-        return await db.get(COLLECTION, 'id', id) as Notification | null
+        return await db.get(COLLECTION, 'id', id) as Notification
     }
 
     async findByTaskId(taskId: string):Promise<Notification[]> {
@@ -35,39 +35,31 @@ export default class NotificationRepository {
     }
 
     async deleteByTask(taskId: string): Promise<boolean> {
-
         const notifications = await this.findByTaskId(taskId);
-
         await Promise.all(
             notifications
-                .filter(notification => notification.id)
-                .map(notification => db.remove(COLLECTION, notification.id!))
+            .filter(notification => notification.id)
+            .map(notification => db.remove(COLLECTION, notification.id!))
         );
-
-        return true;
+        return true
     }
     async deleteAll(uid: string): Promise<boolean> {
         const notifications = await this.findByUser(uid);
-
         await Promise.all(
             notifications
-                .filter(notification => notification.id)
-                .map(notification => db.remove(COLLECTION, notification.id!))
+            .filter(notification => notification.id)
+            .map(notification => db.remove(COLLECTION, notification.id!))
         );
-
-        return true;
+        return true
     }
 
     async reset(userId: string): Promise<boolean> {
-
         const notifications = await this.findByUser(userId);
-
         await Promise.all(
             notifications
-                .filter(notification => notification.id)
-                .map(notification => db.remove(COLLECTION, notification.id!))
+            .filter(notification => notification.id)
+            .map(notification => db.remove(COLLECTION, notification.id!))
         );
-
-        return true;
+        return true
     }
 }

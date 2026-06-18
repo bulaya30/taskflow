@@ -27,7 +27,7 @@ export default function OverviewTab() {
   ).length;
 
 
-  if(isLoadingTasks) {<Loader />}
+  if(isLoadingTasks) {return <Loader />}
   if(isErrorTasks) return <div>Error</div>
 
   return (

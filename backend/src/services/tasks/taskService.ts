@@ -13,8 +13,6 @@ export default class TaskService {
         private taskRepository: TaskRepository,
         private notificationRepository: NotificationRepository
     ) {}
-  
-    /* ===================== VERIFY TASK OWNERSHIP ===================== */
     private async verifyTaskOwnership(
         userId: string,
         taskId: string
@@ -160,18 +158,20 @@ export default class TaskService {
 
     }
 
+    async deleteTasksByUser(userId: string): Promise<boolean> {
+
+        return await this.taskRepository.reset(userId);
+    }
+
     async deleteTask(
         userId: string,
         id: string
         ): Promise<boolean> {
 
-        await this.verifyTaskOwnership(userId, id);
-        
+        await this.verifyTaskOwnership(userId, id);        
         await this.notificationRepository.deleteByTask(id);
-
         await this.taskRepository.delete(id);
-
-        return true;
+        return true
 
     }
 

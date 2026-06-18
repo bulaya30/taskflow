@@ -66,7 +66,7 @@ export default function Dashboard() {
     }, [appTheme])
 
   if(isLoadingNotifications || isLoadingSettings) {
-   <Loader />
+   return <Loader />
   }
   if(isErrorNotifications || isErrorSettings) {
     return (

@@ -20,6 +20,7 @@ import {
 
 export default function ProfileCard() {
   const user : User | null = useAuthStore((state) => state.user);
+  const setUser = useAuthStore((state) => state.setUser);
   const {
     register,
     handleSubmit,
@@ -38,12 +39,12 @@ export default function ProfileCard() {
 
   const onSubmit = async (data: ProfileFormValues) => {
     const payload = {
-      id: user?.id ?? "",
+      id: user?.id!,
       ...data
     }
     updareProfile.mutate(payload, {
-      onSuccess: (res) => {
-        console.log("success", res)
+      onSuccess: () => {
+        setUser(payload)
       }
     })
 

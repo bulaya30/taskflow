@@ -7,7 +7,6 @@ export default class SettingService {
 
   constructor (private settingsRepository: SettingsRepository) {}
 
-  /* ===================== VERIFY TASK OWNERSHIP ===================== */
   private verifySettingOwnership = async (
     uid: string,
     taskId: string
@@ -68,7 +67,7 @@ export default class SettingService {
     if(!uid) {
         throw new Error("User id is required")
     }
-    return await this.settingsRepository.deleteAll(uid)
+    return await this.settingsRepository.reset(uid)
   }
 
   async resetSetting(uid:string): Promise<boolean> {

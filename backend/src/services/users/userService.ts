@@ -2,6 +2,8 @@ import "dotenv/config"
 import jwt, { SignOptions } from "jsonwebtoken";
 import UserRepository from "@/repositories/userRepository.js";
 import SettingsRepository from "@/repositories/settingsRepository.js";
+import TaskRepository from "@/repositories/taskRepository.js";
+import NotificationRepository from "@/repositories/notificationRepository.js";
 
 import type { User, LoginDto, UserInput } from "../../interfaces/user.js"
 
@@ -24,7 +26,9 @@ export default class UserService {
 
   constructor(
     private userRepository: UserRepository,
-    private settingsRepository: SettingsRepository
+    private settingsRepository: SettingsRepository,
+    private taskRepository: TaskRepository,
+    private notificationRepository: NotificationRepository
   ){}
 
   private async checkUser(uid: string): Promise<User> {
@@ -67,7 +71,6 @@ export default class UserService {
     }
 
     try {
-      // Create Firebase Auth user
       const cred = await this.userRepository.register(
         email,
         password
@@ -86,7 +89,7 @@ export default class UserService {
       );
 
       await this.settingsRepository.createDefaultSettings(cred.uid)
-      // Generating API JWT
+   
       const token = jwt.sign(
       {
         id: cred.uid,
@@ -120,6 +123,9 @@ export default class UserService {
   async deleteUser(id: string): Promise<boolean> {
 
     await this.checkUser(id)
+    await this.settingsRepository.reset(id)
+    await this.taskRepository.reset(id)
+    await this.notificationRepository.reset(id)
 
     return await this.userRepository.delete(id)
   }
@@ -133,12 +139,10 @@ export default class UserService {
     }
 
     try {
-    // Verify Firebase token
     const decoded = await this.userRepository.verifyToken(
       idToken
     );
 
-    // Fetch user profile from Firestore
     const user = await this.userRepository.findById(
       decoded.uid
     );
@@ -158,7 +162,6 @@ export default class UserService {
 
       const settings = await this.settingsRepository.findByUser(decoded.uid)
 
-      // Generating API JWT
       const token = jwt.sign(
       {
         id: decoded.uid,
@@ -180,9 +183,5 @@ export default class UserService {
           : "Login failed"
       );
     }
-
-
-
   }
-
 }
