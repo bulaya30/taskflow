@@ -43,6 +43,27 @@ export const formattedDate = (dueDate: string | null) => {
   : null;
 }
 
+export const filterTasks = (
+  tasks: Task[],
+  search: string,
+  filter: TaskFilter
+) => {
+  return tasks.filter((task) => {
+    const matchesFilter =
+      filter === "all"
+        ? true
+        : filter === "pending"
+        ? !task.completed
+        : task.completed;
+
+    const matchesSearch = task.title
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    return matchesFilter && matchesSearch;
+  });
+};
+
 export function getRemainingDays(dueDate: string): number {
   const today = new Date();
   const due = new Date(dueDate);
@@ -64,45 +85,80 @@ const priorityOrder: Record<Task["priority"], number> = {
   LOW: 1,
 };
 
+export const sortTasksByCompletion = (
+  tasks: Task[]
+) => {
+  return [...tasks].sort((a, b) => {
+    if (a.completed === b.completed) return 0;
+
+    return a.completed ? 1 : -1;
+  });
+};
+
+export const sortTasksByPriority = (tasks: Task[]) => {
+  return [...tasks].sort(
+    (a, b) => priorityOrder[b.priority] - priorityOrder[a.priority]
+  );
+};
+export const sortTasksByCreatedDate = (tasks: Task[]) => {
+  return [...tasks].sort(
+    (a, b) =>
+      firestoreToDate(b.createdAt) -
+      firestoreToDate(a.createdAt)
+  );
+};
+
+export const sortTasksByDueDate = (tasks: Task[]) => {
+  return [...tasks].sort((a, b) => {
+    if (!a.dueDate && !b.dueDate) return 0;
+    if (!a.dueDate) return 1;
+    if (!b.dueDate) return -1;
+
+    return getRemainingDays(a.dueDate) - getRemainingDays(b.dueDate);
+  });
+};
+export const sortPendingTasks = (tasks: Task[]) => {
+  const byPriority = sortTasksByPriority(tasks);
+
+  const withDueDate = byPriority.filter(
+    (task) => !!task.dueDate
+  );
+
+  const withoutDueDate = byPriority.filter(
+    (task) => !task.dueDate
+  );
+
+  return [
+    ...sortTasksByDueDate(withDueDate),
+    ...sortTasksByCreatedDate(withoutDueDate),
+  ];
+};
+
 export const getFilteredTasks = (
   tasks: Task[],
   search: string,
   filter: TaskFilter
 ) => {
-  return tasks
-    .filter((task) => {
-      const matchesFilter =
-        filter === "all"
-          ? true
-          : filter === "pending"
-          ? !task.completed
-          : task.completed;
+  const filtered = filterTasks(tasks, search, filter);
 
-      const matchesSearch = task.title
-        .toLowerCase()
-        .includes(search.toLowerCase());
+  if (filter === "pending") {
+    return sortPendingTasks(filtered);
+  }
 
-      return matchesFilter && matchesSearch;
-    })
-    .sort((a, b) => {
-      // Pending first
-      if (a.completed !== b.completed) {
-        return a.completed ? 1 : -1;
-      }
+  if (filter === "completed") {
+    return sortTasksByCreatedDate(filtered);
+  }
 
-      // Higher priority first
-      if (a.priority !== b.priority) {
-        return priorityOrder[b.priority] - priorityOrder[a.priority];
-      }
+  const pending = sortPendingTasks(
+    filtered.filter((task) => !task.completed)
+  );
 
-      // Newest first
-      return (
-        firestoreToDate(b.createdAt) -
-        firestoreToDate(a.createdAt)
-      );
-    });
+  const completed = sortTasksByCreatedDate(
+    filtered.filter((task) => task.completed)
+  );
+
+  return [...pending, ...completed];
 };
-
 export function getSortedNotification(
   notifications: Notification[]
 ): Notification[] {
