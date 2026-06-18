@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useSearchParams } from "react-router-dom"
 import { motion } from "framer-motion"
 import { SidebarProvider } from "@/components/ui/sidebar"
@@ -10,11 +11,15 @@ import NotificationsTab from "@/features/dashboard/tabs/NotificationsTab"
 import SettingsTab from "../tabs/SettingsTab"
 
 import { useGetNotification } from "@/hooks/notification/useGetNotification"
+import { useGetSettings } from "@/hooks/setting/useGetSettings"
 import { getSortedNotification } from "@/lib/utils"
 
 import Loader from "../components/Loader"
 import MobileNavbar from "@/features/sidebar/components/MobileNavbar"
 import DesktopSidebar from "@/features/sidebar/pages/DesktopSiderbar"
+
+import useAuthStore from "@/store/authStore"
+import { applyTheme } from "@/lib/theme"
 
 function TabTransition({
   children,
@@ -35,9 +40,12 @@ function TabTransition({
 
 export default function Dashboard() {
   const { data: notifications = [], isLoading: isLoadingNotifications, isError: isErrorNotifications } = useGetNotification();
+  const { data: settings, isLoading: isLoadingSettings, isError: isErrorSettings } = useGetSettings();
   const [searchParams ] = useSearchParams();
   const validTabs = ["overview", "tasks", "notifications", "settings"] as const
 
+  const appTheme = useAuthStore((state) => state.theme);
+  const setTheme = useAuthStore((state) => state.setTheme);
 
   const tab = validTabs.includes(
     searchParams.get("tab") as typeof validTabs[number]
@@ -47,7 +55,17 @@ export default function Dashboard() {
 
   const sortedNotifications = getSortedNotification(notifications);
 
-  if(isLoadingNotifications) {
+   useEffect(() => {
+      if (!settings) return
+
+      setTheme(settings.theme)
+    }, [settings])
+    
+    useEffect(() => {
+      applyTheme(appTheme)
+    }, [appTheme])
+
+  if(isLoadingNotifications || isLoadingSettings) {
    <Loader />
   }
   if(isErrorNotifications) {
