@@ -68,7 +68,7 @@ export default function Dashboard() {
   if(isLoadingNotifications || isLoadingSettings) {
    <Loader />
   }
-  if(isErrorNotifications) {
+  if(isErrorNotifications || isErrorSettings) {
     return (
       <div className="flex justify-center text-red-500 items-center font-semibold gap-2 h-screen">
         <p>Error loading notifications</p>
