@@ -43,23 +43,19 @@ export default function MobileSidebar({
     "
     >
 
-      <header className="border-b p-6 text-center">
+      <header className="border-b p-6 text-left">
 
         <h1 className="text-xl font-bold">
-
           TaskFlow
-
         </h1>
 
         <p className="text-sm text-muted-foreground">
-
           Manage your tasks
-
         </p>
 
       </header>
 
-      <main className="flex-1 overflow-auto p-4">
+      <main className="flex-1 overflow- p-4">
 
         <SidebarContentMenu
           notifications={notifications}

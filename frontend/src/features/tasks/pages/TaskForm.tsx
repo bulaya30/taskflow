@@ -75,15 +75,14 @@ export default function TaskForm({ onSubmit, task, isLoading }: TaskFormProps) {
       className="space-y-5"
       aria-label="Task form"
     >
-      {/* HEADER */}
+
       <header>
-        <h2 className="text-lg font-bold">{!isEditing ? "Create Task" : "Edit Task"}</h2>
+        <h1 className="text-lg font-bold">{!isEditing ? "Create Task" : "Edit Task"}</h1>
         <p className="text-sm text-muted-foreground">
           Fill in the details below
         </p>
       </header>
 
-      {/* TITLE */}
       <div className="space-y-1">
         <Label htmlFor="title"
           className={`text-white/80 ${errors.title ? "text-red-500" : ""}`}
@@ -95,14 +94,14 @@ export default function TaskForm({ onSubmit, task, isLoading }: TaskFormProps) {
           aria-invalid={!!errors.title}
           aria-describedby={`${errors.title ? "title-error" : undefined}`}
           className={`${inputClass} ${errors.title ? "border-red-500 focus-visible:ring-red-500"
-                      : "border-input"}`}
+            : "border-input"}
+          `}
         />
         {errors.title && (
           <p id="title-error" className="text-sm text-red-500">{errors.title.message}</p>
         )}
       </div>
 
-      {/* DESCRIPTION */}
       <div className="space-y-1">
         <Label htmlFor="description">Description</Label>
         <Textarea
@@ -112,25 +111,25 @@ export default function TaskForm({ onSubmit, task, isLoading }: TaskFormProps) {
             aria-invalid={!!errors.description}
             aria-describedby={`${errors.description ? "description-error" : undefined}`}
             className={`${inputClass} ${errors.description ? "border-red-500 focus-visible:ring-red-500"
-                      : "border-input"}`}
+              : "border-input"}
+            `}
         />
         {errors.description && (
           <p id="description-error" className="text-sm text-red-500">{errors.description.message}</p>
         )}
       </div>
 
-      {/* PRIORITY */}
       <div className="space-y-1">
         <Label htmlFor="priority">Priority</Label>
         <select
           id="priority"
           {...register("priority")}
-          // className="w-full border rounded-md p-2 text-sm"
           aria-invalid={!!errors.priority}
           aria-describedby={`${errors.priority ? "priority-error" : undefined}`}
           className={`${inputClass} ${errors.priority ? "border-red-500 focus-visible:ring-red-500"
-                      : "border-input"} w-full rounded-md text-sm p-2 border bg-black
-                      focus-visible:bg-black/100`}
+            : "border-input"} w-full rounded-md text-sm p-2 border bg-black
+            focus-visible:bg-black/100
+          `}
         >
           <option value="HIGH">High</option>
           <option value="MEDIUM">Medium</option>
@@ -143,7 +142,6 @@ export default function TaskForm({ onSubmit, task, isLoading }: TaskFormProps) {
         )}
       </div>
 
-      {/* DUE DATE */}
       <div className="space-y-1">
         <Label htmlFor="dueDate">Due Date</Label>
         <Input
@@ -161,7 +159,6 @@ export default function TaskForm({ onSubmit, task, isLoading }: TaskFormProps) {
         )}
       </div>
 
-      {/* ACTION */}
       <Button 
         type="submit" 
         className="w-full h-12 cursor-pointer rounded-xl bg-gray-800 font-semibold text-white font-semibold hover:scale-[1.02] transition"

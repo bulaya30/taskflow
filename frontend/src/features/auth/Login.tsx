@@ -52,7 +52,6 @@ export default function Login() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white">
 
-      {/* BACKGROUND GLOW EFFECTS */}
       <div className="absolute top-20 left-20 h-72 w-72 rounded-full bg-indigo-500/20 blur-3xl" />
       <div className="absolute bottom-20 right-20 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl" />
 
@@ -61,7 +60,6 @@ export default function Login() {
         className="relative mx-auto grid min-h-screen max-w-7xl grid-cols-1 lg:grid-cols-2 items-center px-6 py-12 gap-12"
       >
 
-        {/* ================= LEFT HERO ================= */}
         <aside className="hidden lg:flex flex-col justify-center space-y-10">
 
           <header className="space-y-6">
@@ -94,19 +92,19 @@ export default function Login() {
           </section>
         </aside>
 
-        {/* ================= RIGHT LOGIN ================= */}
+        
         <section className="flex items-center justify-center">
 
           <Card className="w-full max-w-md rounded-3xl border-0 bg-white/10 backdrop-blur-xl shadow-2xl">
 
-            {/* ERROR */}
+            
             {serverError && (
               <div className="mx-6 mt-6 rounded-xl bg-red-500/10 border border-red-500/20 px-4 py-3 text-sm text-red-300">
                 {serverError}
               </div>
             )}
 
-            {/* HEADER */}
+            
             <CardHeader className="text-center space-y-3">
               <div className="mx-auto flex text-2xl h-14 w-14 items-center justify-center rounded-full bg-white text-black font-bold">
                 N
@@ -124,11 +122,11 @@ export default function Login() {
               </p>
             </CardHeader>
 
-            {/* FORM */}
+            
             <CardContent>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
-                {/* EMAIL */}
+                
                 <fieldset className="space-y-2">
                   <Label htmlFor="email" 
                     className={`text-white/80 ${errors.email ? "text-red-500" : ""}`}
@@ -154,7 +152,7 @@ export default function Login() {
                   )}
                 </fieldset>
 
-                {/* PASSWORD */}
+                
                 <fieldset className="space-y-2">
                   <Label htmlFor="password" 
                     className={`text-white/80 ${errors.password ? "text-red-500" : ""}`}>
@@ -193,7 +191,7 @@ export default function Login() {
                   )}
                 </fieldset>
 
-                {/* BUTTON */}
+                
                 <Button
                   type="submit"
                   disabled={isPending}
@@ -211,7 +209,7 @@ export default function Login() {
               </form>
             </CardContent>
 
-            {/* FOOTER */}
+            
             <CardFooter className="bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 justify-center pb-6">
               <p className="text-sm text-white/60">
                 Don't have an account?{" "}

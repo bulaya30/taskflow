@@ -60,14 +60,14 @@ export default function Register() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white">
-      {/* BACKGROUND GLOW EFFECTS */}
+      
       <div className="absolute top-20 left-20 h-72 w-72 rounded-full bg-indigo-500/20 blur-3xl" />
       <div className="absolute top-20 right-20 h-72 w-72 rounded-full bg-indigo-500/20 blur-3xl" />
       <section
         aria-labelledby="login-title"
         className="relative mx-auto grid min-h-screen max-w-7xl grid-cols-1 lg:grid-cols-2 items-center px-6 py-12 gap-12"
       >
-        {/* ================= LEFT HERO ================= */}
+        
         <aside className="hidden lg:flex flex-col justify-center space-y-10">
 
           <header className="space-y-6">
@@ -99,18 +99,18 @@ export default function Register() {
             ))}
           </section>
         </aside>
-        {/* ================= RIGHT LOGIN ================= */}
+        
         <section className="flex items-center justify-center">
           <Card className="w-full max-w-md rounded-3xl border-0 bg-white/10 backdrop-blur-xl shadow-2xl">
 
-            {/* ERROR */}
+            
             {serverError && (
               <div className="text-center bg-red-300 py-4">
                 <p className="text-sm text-red-600">{serverError}</p>
               </div>
             )}
 
-            {/* HEADER */}
+            
             <CardHeader className="text-center space-y-3">
               <div className="mx-auto flex h-14 w-14 text-2xl items-center justify-center rounded-full bg-white text-black font-bold">
                 N
@@ -127,11 +127,11 @@ export default function Register() {
               </p>
             </CardHeader>
 
-            {/* FORM */}
+            
             <CardContent>
               <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
 
-                {/* NAME */}
+                
                 <fieldset className="space-y-2">
                   <Label htmlFor="name"
                     className={`text-white/80 ${errors.name ? "text-red-500" : ""}`}
@@ -153,7 +153,6 @@ export default function Register() {
                   )}
                 </fieldset>
 
-                {/* EMAIL */}
                 <fieldset className="space-y-2">
                   <Label htmlFor="email"
                     className={`text-white/80 ${errors.email ? "text-red-500" : ""}`}
@@ -175,7 +174,6 @@ export default function Register() {
                   )}
                 </fieldset>
 
-                {/* PASSWORD */}
                 <fieldset className="space-y-2">
                   <Label htmlFor="password"
                     className={`text-white/80 ${errors.password ? "text-red-500" : ""}`}
@@ -210,7 +208,6 @@ export default function Register() {
                   )}
                 </fieldset>
 
-                {/* CONFIRM PASSWORD */}
                 <fieldset className="space-y-2">
                   <Label htmlFor="confirmPassword"
                     className={`text-white/80 ${errors.confirmPassword ? "text-red-500" : ""}`}
@@ -247,7 +244,6 @@ export default function Register() {
                   )}
                 </fieldset>
 
-                {/* SUBMIT */}
                 <Button
                   type="submit"
                   disabled={isPending}
@@ -265,7 +261,6 @@ export default function Register() {
               </form>
             </CardContent>
 
-            {/* FOOTER */}
             <CardFooter className="bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 justify-center pb-6">
               <p className=" text-white text-sm text-muted-foreground">
                 Already have an account?{" "}

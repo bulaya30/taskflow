@@ -44,6 +44,7 @@ export default function DesktopSidebar({
         via-slate-950
         to-black
         text-white
+        overflow-y-hidden
       "
       >
 

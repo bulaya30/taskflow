@@ -102,9 +102,9 @@ export default function DangerZone() {
   return (
     <section aria-labelledby="danger-zone-title" className="p-4 rounded text-red-600 space-y-4">
       <header>
-        <h2 id="danger-zone-title" className="text-lg font-bold text-red-600">
+        <h1 id="danger-zone-title" className="text-lg font-bold text-red-600">
           Danger Zone
-        </h2>
+        </h1>
         <p className="text-sm ">
           Irreversible actions. Proceed with caution.
         </p>

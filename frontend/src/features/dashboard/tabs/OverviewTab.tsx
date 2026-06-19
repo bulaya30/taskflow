@@ -48,12 +48,12 @@ export default function OverviewTab() {
       <section aria-labelledby='task-heading' className='space-y-4 dark:bg-black dark:text-white p-2 rounded-lg'>
           <div className=''>
             <div className='flex items-center justify-between mb-6'>
-              <div>
+              <header>
                 <h1 id='task-heading' className='text-2xl font-bold tracking-tight mb-2'>Tasks</h1>
                 <p className='text-sm text-muted-foreground'>
                     Manage, track your tasks
                 </p>
-            </div>
+              </header>
             <motion.nav
                 layout
                 aria-label="Task filters"

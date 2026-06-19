@@ -23,11 +23,9 @@ export default function DashboardHeader({ notifications }: Props) {
       flex
       flex-col
       gap-4
-
       md:flex-row
       md:items-center
       md:justify-between
-
       p-2
       rounded-lg
       mb-2 dark:bg-black dark:text-white p-2 rounded-lg    
@@ -54,7 +52,6 @@ export default function DashboardHeader({ notifications }: Props) {
           w-full
           items-center
           gap-2
-
           md:w-auto
           md:gap-3
         "

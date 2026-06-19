@@ -48,8 +48,6 @@ export default function MobileNavbar({
     >
       <Sheet>
 
-        {/* Open menu button */}
-
         <SheetTrigger asChild>
           <Button
             variant="ghost"
@@ -64,8 +62,6 @@ export default function MobileNavbar({
             <Menu className="h-6 w-6" />
           </Button>
         </SheetTrigger>
-
-        {/* Drawer */}
 
         <SheetContent
           side="left"
@@ -101,8 +97,6 @@ export default function MobileNavbar({
 
       </Sheet>
 
-      {/* Logo */}
-
       <h1
         className="
           left
@@ -113,8 +107,6 @@ export default function MobileNavbar({
       >
         TaskFlow
       </h1>
-
-      {/* Spacer for centering */}
 
       <div className="w-10" />
 
