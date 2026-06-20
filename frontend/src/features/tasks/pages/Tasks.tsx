@@ -111,7 +111,7 @@ export default function Tasks() {
         "
     >
         <header className='space-y-1'>
-          <h1 id='task-heading' className='text-2xl font-bold tracking-tight mb-2'>Tasks</h1>
+          <h2 id='task-heading' className='text-2xl font-bold tracking-tight mb-2'>Tasks</h2>
           <p className='text-sm text-muted-foreground'>Manage, organize and track your work.</p>
         </header>
 

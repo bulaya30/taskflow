@@ -9,7 +9,7 @@
     "start": "node dist/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Norbert Bulaya",
   "license": "ISC",
   "type": "module",
   "dependencies": {

@@ -105,24 +105,30 @@ export default function Dashboard() {
               {tab !== "settings" && tab !== "notifications" && <DashboardHeader notifications={sortedNotifications} />}
               {tab === "overview" && (
                 <TabTransition>
-                  <OverviewTab
-                  />
+                  <section aria-labelledby="overview-heading">
+                    <OverviewTab />
+                  </section>
                 </TabTransition>
               )}
               {tab === "tasks" && (
                 <TabTransition>
-                  <TasksTab 
-                  />
+                  <section aria-labelledby="tasks-heading">
+                    <TasksTab />
+                  </section>
                 </TabTransition>
               )}
               {tab === "notifications" && (
                 <TabTransition>
-                  <NotificationsTab/>
+                  <section aria-labelledby="notifications-heading">
+                    <NotificationsTab/>
+                  </section>
                 </TabTransition>
               )}
               {tab === "settings" && (
                 <TabTransition >
-                  <SettingsTab/>
+                  <section aria-labelledby="settings-heading">
+                    <SettingsTab />
+                  </section>
                 </TabTransition>
               )}
 

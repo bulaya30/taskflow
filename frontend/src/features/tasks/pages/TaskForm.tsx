@@ -77,7 +77,7 @@ export default function TaskForm({ onSubmit, task, isLoading }: TaskFormProps) {
     >
 
       <header>
-        <h1 className="text-lg font-bold">{!isEditing ? "Create Task" : "Edit Task"}</h1>
+        <h2 className="text-lg font-bold">{!isEditing ? "Create Task" : "Edit Task"}</h2>
         <p className="text-sm text-muted-foreground">
           Fill in the details below
         </p>

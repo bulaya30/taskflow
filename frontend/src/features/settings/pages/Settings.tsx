@@ -9,7 +9,7 @@ export default function Settings() {
   return (
     <section className="space-y-6">
       <header>
-        <h1 className="text-2xl font-bold">Settings</h1>
+        <h2 className="text-2xl font-bold">Settings</h2>
         <p className="text-muted-foreground">
           Manage your account and preferences.
         </p>
