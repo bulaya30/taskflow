@@ -28,73 +28,108 @@ export default function OverviewTab() {
 
 
   if(isLoadingTasks) {return <Loader />}
-  if(isErrorTasks) return <div>Error</div>
+  if (isErrorTasks) {
+    return (
+      <section
+        aria-labelledby="tasks-error"
+        className="py-10 text-center"
+      >
+        <h2
+          id="tasks-error"
+          className="text-lg font-semibold text-red-500"
+        >
+          Error loading tasks
+        </h2>
+      </section>
+    )
+  }
 
   return (
-   <>
-    <section aria-label='Task summary' 
-      className='
-      grid
-      grid-cols-1
-      sm:grid-cols-1
-      lg:grid-cols-3
-      gap-4
-      dark:bg-black dark:text-white p-2 rounded-lg
-    '>
+   <section
+    aria-labelledby="overview-heading"
+    className="space-y-8"
+    >
+      <h2
+        id="overview-heading"
+        className="sr-only"
+      >
+          Dashboard Overview
+      </h2>
+      <section aria-labelledby='summary-heading' 
+        className='
+        grid
+        grid-cols-1
+        sm:grid-cols-1
+        lg:grid-cols-3
+        gap-4
+        dark:bg-black dark:text-white p-2 rounded-lg
+      '>
+        <h2
+          id="summary-heading"
+          className="sr-only"
+        >
+          Task Summary
+        </h2>
           <SummaryCard type={'total'} value={totalTasks} />
           <SummaryCard type={'pending'} value={pendingTasks} />
           <SummaryCard type={'completed'} value={completedTasks} />
       </section>
       <section aria-labelledby='task-heading' className='space-y-4 dark:bg-black dark:text-white p-2 rounded-lg'>
-          <div className=''>
-            <div className='flex items-center justify-between mb-6'>
-              <header>
-                <h2 id='task-heading' className='text-2xl font-bold tracking-tight mb-2'>Tasks</h2>
-                <p className='text-sm text-muted-foreground'>
-                    Manage, track your tasks
-                </p>
-              </header>
-            <motion.nav
-                layout
-                aria-label="Task filters"
-                className="flex items-center gap-2"
-              >
-                {buttonFilters.map((item) => {
-                  const isActive = filter === item;
-
-                  return (
-                    <button
-                      key={item}
-                      type="button"
-                      onClick={() => setFilter(item)}
-                      className="px-3 py-1 text-sm rounded-full relative"
-                    >
-                      {isActive && (
-                        <motion.span
-                          layoutId="activeFilter"
-                          className="absolute inset-0 rounded-full bg-gray-800 font-semibold"
-                        />
-                      )}
-                      <span className={`relative z-10 capitalize ${isActive ? "text-white" : "text-muted-foreground"}`}>
-                        {item}
-                      </span>
-                    </button>
-                  );
-                })}
-              </motion.nav>
+        <header 
+          className="
+          flex
+          flex-col
+          gap-4
+          md:flex-row
+          md:items-center
+          md:justify-between
+          mb-6
+        ">
+          <div>
+            <h2 id='task-heading' className='text-2xl font-bold tracking-tight mb-2'>Tasks</h2>
+            <p className='text-sm text-muted-foreground'>
+              Manage, track your tasks
+            </p>
           </div>
-          {filteredTasks.length === 0 ? (
-            <div className="text-center py-12 mx-auto">
-              <h3 className="font-semibold text-lg">No tasks found</h3>
-              <p className="text-muted-foreground">
-                Try adding one on Task tab.
-              </p>
-            </div>
-          ) : (
-            <RecentTask tasks={filteredTasks} />
-          )}
-        </div>
+          <motion.nav
+            layout
+            aria-label="Task filters"
+            className="flex items-center gap-2"
+          >
+            {buttonFilters.map((item) => {
+              const isActive = filter === item
+              return (
+                <button
+                  key={item}
+                  type="button"
+                  onClick={() => setFilter(item)}
+                  className="px-3 py-1 text-sm rounded-full relative"
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeFilter"
+                      className="absolute inset-0 rounded-full bg-gray-800 font-semibold"
+                    />
+                  )}
+                  <span className={`relative z-10 capitalize ${isActive ? "text-white" : "text-muted-foreground"}`}>
+                    {item}
+                  </span>
+                </button>
+              );
+            })}
+          </motion.nav>
+        </header>
+        {filteredTasks.length === 0 ? (
+          <article className="text-center py-12 mx-auto">
+            <h3 className="font-semibold text-lg">No tasks found</h3>
+            <p className="text-muted-foreground">
+              Try adding one on Task tab.
+            </p>
+          </article>
+        ) : (
+          <RecentTask tasks={filteredTasks} />
+        )}
       </section>
-    </>
+    </section>
   )
 }
