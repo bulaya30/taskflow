@@ -52,9 +52,9 @@ export default function DesktopSidebar({
 
           <header className="mb-10 text-center">
 
-            <h1 className="text-xl font-bold">
+            <h2 className="text-xl font-bold">
               TaskFlow
-            </h1>
+            </h2>
 
             <p className="text-sm text-muted-foreground">
               Manage your tasks

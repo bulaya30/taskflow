@@ -3,14 +3,30 @@ import NotifcationItem from "@/features/notifications/components/NotificationIte
 import { useGetNotification } from "@/hooks/notification/useGetNotification"
 import { getSortedNotification } from "@/lib/utils"
 
+import Loader from "@/features/dashboard/components/Loader";
+
 
 
 export default function Notifcations() {
     const { data: notifications = [], isLoading, isError } = useGetNotification();
     const sortedNotifications = getSortedNotification(notifications);
 
-    if(isLoading) return <div>Loading...</div>;
-    if(isError) return <div>Error</div>;
+    if(isLoading) { return <Loader />}
+    if(isError) {
+        return (
+            <section
+            aria-labelledby="tasks-error"
+            className="py-10 text-center"
+            >
+            <h2
+                id="tasks-error"
+                className="text-lg font-semibold text-red-500"
+            >
+                Error loading tasks
+            </h2>
+            </section>
+        );
+    }
     
   return (
     <section className="space-y-6">

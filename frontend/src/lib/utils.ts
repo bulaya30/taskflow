@@ -85,6 +85,13 @@ const priorityOrder: Record<Task["priority"], number> = {
   LOW: 1,
 };
 
+export const getDeadlineText = (daysLeft: number) => {
+  if (daysLeft === 0) return "🔥 Due Today"
+  if (daysLeft < 0)
+    return `Overdue by ${Math.abs(daysLeft)} ${Math.abs(daysLeft) === 1 ? "day" : "days"}`
+  return `${daysLeft} ${daysLeft === 1 ? "Day" : "Days"} left`
+}
+
 export const sortTasksByCompletion = (
   tasks: Task[]
 ) => {

@@ -98,8 +98,22 @@ export default function Tasks() {
         })
     }
 
-    if(isLoadingTasks) {<Loader />}
-    if(isErrorTasks) return <p>Error</p>
+    if(isLoadingTasks) { return <Loader />}
+    if (isErrorTasks) {
+        return (
+            <section
+            aria-labelledby="tasks-error"
+            className="py-10 text-center"
+            >
+            <h2
+                id="tasks-error"
+                className="text-lg font-semibold text-red-500"
+            >
+                Error loading tasks
+            </h2>
+            </section>
+        );
+    }
     
     return ( 
       <section
@@ -115,7 +129,7 @@ export default function Tasks() {
           <p className='text-sm text-muted-foreground'>Manage, organize and track your work.</p>
         </header>
 
-        <div
+        <header
             className="
                 flex
                 flex-col
@@ -182,46 +196,48 @@ export default function Tasks() {
                 />
 
                 <button
-                onClick={() => {
-                    setIsOpen(true);
-                    setEditingTask(null);
-                }}
-                className="
-                    w-full
-                    sm:w-auto
-                    px-4
-                    py-2
-                    bg-gray-800
-                    font-semibold
-                    text-white
-                    rounded-md
-                    cursor-pointer
-                    hover:bg-gray-700
-                    transition
-                "
+                    type='button'
+                    onClick={() => {
+                        setIsOpen(true);
+                        setEditingTask(null);
+                    }}
+                    className="
+                        w-full
+                        sm:w-auto
+                        px-4
+                        py-2
+                        bg-gray-800
+                        font-semibold
+                        text-white
+                        rounded-md
+                        cursor-pointer
+                        hover:bg-gray-700
+                        transition
+                    "
                 >
                 + New Task
                 </button>
 
             </div>
-        </div>
+        </header>
 
         <div>
           {filteredTasks.length === 0 ? (
-              <div className="text-center py-10 px-4">
-                  <h3 className="font-semibold">No tasks found</h3>
-                  <p className="text-muted-foreground">
-                      Try changing your filters or create a new task.
-                  </p>
-              </div>
-              ) : (
-                  <div
-                        className="
-                            space-y-4
-                            md:space-y-6
-                        "
-                    >
-                      {filteredTasks.map((task) => (
+            <article className="text-center py-10 px-4">
+                <h3 className="font-semibold">No tasks found</h3>
+                <p className="text-muted-foreground">
+                  Try changing your filters or create a new task.
+                </p>
+            </article>
+            ) : (
+               <section
+                    aria-label="Task list"
+                    className="
+                        space-y-4
+                        md:space-y-6
+                    "
+                >
+                    {filteredTasks.map((task) => (
                         
                         <TaskCard
                             key={task.id}
@@ -243,7 +259,7 @@ export default function Tasks() {
                             }
                         />
                       ))}
-                  </div>
+                </section>
               )
           }
 
