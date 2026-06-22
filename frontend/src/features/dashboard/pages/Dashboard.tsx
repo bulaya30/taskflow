@@ -57,7 +57,7 @@ export default function Dashboard() {
 
    useEffect(() => {
       if (!settings) return
-
+      applyTheme(settings.theme)
       setTheme(settings.theme)
     }, [settings])
     

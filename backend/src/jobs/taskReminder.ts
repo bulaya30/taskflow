@@ -19,6 +19,7 @@ export default class TaskReminder {
 
   start() {
 
+    // cron.schedule("*/10 * * * *", async () => {
     cron.schedule("0 * * * *", async () => {
 
       const tasks = await this.taskService.getTasks();
@@ -39,7 +40,7 @@ export default class TaskReminder {
         const existing =
           await this.notificationService.getUserNotification(
             String(task.userId)
-          );
+          ) ?? [];
 
         // Due today
         if (isDueToday(task.dueDate)) {

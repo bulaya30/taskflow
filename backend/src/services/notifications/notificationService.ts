@@ -57,7 +57,7 @@ export default class NotificationService {
     
     await this.checkUser(uid)
     
-    return await this.notificationRepository.findByUser(uid)
+    return await this.notificationRepository.findByUser(uid) as Notification[]
     
   }
 
